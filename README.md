@@ -1,4 +1,4 @@
-# BibtexToScrapbox
+# ImagesToScrapbox
 
 Scrapbox http://scrapbox.io is a novel note-taking service for teams.
 
