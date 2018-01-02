@@ -93,7 +93,7 @@ module ImagesToScrapbox
       tocpage=SbPage.new()
       tocpage.set_page_title(@@converted_on)
       @@converters.map do |converter|
-        tocpage.push_text("  ["+converter.page_title+"]")
+        tocpage.push_text(" ["+converter.page_title+"]")
       end
       tocpage.get_page
     end
@@ -122,7 +122,7 @@ module ImagesToScrapbox
       if options[:image]
         r=register_image(@image_path)
         @image_url=r["url"]
-        imagepage.push_text( options[:larger] ? "[["+@image_url+"]]" : "["+@image_url+"]"  )
+        imagepage.push_text( options[:larger] ? "[["+@image_url+"]]" : "["+@image_url+"]")
       end
 
       imagepage.push_text("["+@@converted_on+"]")
