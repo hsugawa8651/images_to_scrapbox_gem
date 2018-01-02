@@ -25,16 +25,16 @@ module ImagesToScrapbox
     class_option :unique, :type => :boolean, :aliases => '-u',
       :default => true, :desc => 'unique files'
     class_option :sort, :type => :string, :aliases => '-s',
-      :default => "none", :desc => 'sort files by none, names,or numbers'
+      :default => "none", :desc => 'sort files by `none`, `names`, or `numbers`'
     class_option :ascending, :type => :boolean, :aliases => '-a',
       :default => true, :desc => "sort in ascending order, or descending"
 
     method_option :image, type: :boolean, aliases: '-i',
       :default => true, desc: 'register images'
     method_option :larger, type: :boolean, aliases: '-l',
-        :default => false, desc: 'larger image'
+      :default => false, desc: 'larger image'
     method_option :timestamp, :type => :string, :aliases => '-t',
-      :default => "mtime", :desc => "file timestamp: atime, ctime, mtime"
+      :default => "mtime", :desc => "file timestamp: `atime`, `ctime`, or `mtime`"
     method_option :toc, type: :boolean, aliases: '-t',
       :default => true, desc: 'creates table-of-contents'
 

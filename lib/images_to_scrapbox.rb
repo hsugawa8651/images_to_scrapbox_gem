@@ -47,9 +47,9 @@ module ImagesToScrapbox
 
       case options[:sort]
       when "none"
-      when "name"
+      when "names"
         @@converters.sort_by!{ |e| e.image_name }
-      when "number"
+      when "numbers"
         @@converters.sort_by!{ |e|
           File.basename(e.image_name, File.extname(e.image_name)).
           match(%r!(\d+)\Z!).to_a[1].to_i }
