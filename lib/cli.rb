@@ -25,7 +25,7 @@ module ImagesToScrapbox
     class_option :unique, :type => :boolean, :aliases => '-u',
       :default => true, :desc => 'unique files'
     class_option :sort, :type => :string, :aliases => '-s',
-      :default => "none", :desc => 'sort files'
+      :default => "none", :desc => 'sort files by none, names,or numbers'
     class_option :ascending, :type => :boolean, :aliases => '-a',
       :default => true, :desc => "sort in ascending order, or descending"
 

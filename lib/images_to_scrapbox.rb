@@ -49,6 +49,10 @@ module ImagesToScrapbox
       when "none"
       when "name"
         @@converters.sort_by!{ |e| e.image_name }
+      when "number"
+        @@converters.sort_by!{ |e|
+          File.basename(e.image_name, File.extname(e.image_name)).
+          match(%r!(\d+)\Z!).to_a[1].to_i }
       else
         raise Thor::Error, "Unknown sort type: #{sort_type}"
       end
