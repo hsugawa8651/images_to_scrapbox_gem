@@ -41,7 +41,7 @@ module ImagesToScrapbox
     desc 'convert FILES [options]', 'Convert images files to scrapbox-json'
     def convert(*globs)
       helper_add_paths(globs)
-      ImagesToScrapbox::Converter.perform(TRUE, options)
+      ImagesToScrapbox::Converter.perform(true, options)
     end
 
     desc 'list FILES [options]', 'List images files to be processed'

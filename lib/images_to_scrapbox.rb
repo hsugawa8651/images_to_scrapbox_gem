@@ -39,7 +39,7 @@ module ImagesToScrapbox
       end
     end
 
-    def Converter.perform(do_convert=TRUE, options)
+    def Converter.perform(do_convert=true, options)
 
       if options[:unique]
         @@converters.uniq!{ |e| e.image_name }
