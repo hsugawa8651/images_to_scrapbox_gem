@@ -64,7 +64,7 @@ module ImagesToScrapbox
         return
       end
 
-      @@converted_on="Converted on #{Time.now.to_s}"
+      @@converted_on="Converted on #{Time.now.to_s}".gsub!(%r!\s+!,'_')
 
       pages=[]
       @@converters.map do |converter|
@@ -111,17 +111,18 @@ module ImagesToScrapbox
       else
         raise Thor::Error, "Unknown timestamp type: #{timestamp_kind}"
       end
-      @page_title=@image_name + " " + timestamp
+      @page_title=(@image_name + " " + timestamp).gsub!(%r!\s+!, '_')
 
       imagepage=SbPage.new()
       imagepage.set_page_title(@page_title)
       imagepage.push_text(@image_name)
       imagepage.push_empty_text()
 
+      @image_url=""
       if options[:image]
         r=register_image(@image_path)
-        url=r["url"]
-        imagepage.push_text( options[:larger] ? "[["+url+"]]" : "["+url+"]"  )
+        @image_url=r["url"]
+        imagepage.push_text( options[:larger] ? "[["+@image_url+"]]" : "["+@image_url+"]"  )
       end
 
       imagepage.push_text("["+@@converted_on+"]")
