@@ -25,7 +25,7 @@ module ImagesToScrapbox
     class_option :unique, :type => :boolean, :aliases => '-u',
       :default => true, :desc => 'unique files'
     class_option :sort, :type => :string, :aliases => '-s',
-      :default => "none", :desc => 'sort files by `none`, `names`, or `numbers`'
+      :default => "numbers", :desc => 'sort files by `none`, `names`, or `numbers`'
     class_option :ascending, :type => :boolean, :aliases => '-a',
       :default => true, :desc => "sort in ascending order, or descending"
 
@@ -37,6 +37,8 @@ module ImagesToScrapbox
       :default => "mtime", :desc => "file timestamp: `atime`, `ctime`, or `mtime`"
     method_option :toc, type: :boolean, aliases: '-t',
       :default => true, desc: 'creates table-of-contents'
+    method_option :whole, type: :boolean, aliases: '-w',
+      :default => true, desc: 'creates a page occipied by whole images'
 
     desc 'convert FILES [options]', 'Convert images files to scrapbox-json'
     def convert(*globs)

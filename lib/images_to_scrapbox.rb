@@ -52,9 +52,9 @@ module ImagesToScrapbox
       when "numbers"
         @@converters.sort_by!{ |e|
           File.basename(e.image_name, File.extname(e.image_name)).
-          match(%r!(\d+)\Z!).to_a[1].to_i }
+            match(%r!(\d+)\Z!).to_a[1].to_i }
       else
-        raise Thor::Error, "Unknown sort type: #{sort_type}"
+        raise Thor::Error, "Unknown sort type: #{options[:sort]}"
       end
 
       unless options[:ascending]
@@ -79,6 +79,10 @@ module ImagesToScrapbox
         pages.concat Converter.toc_page
       end
 
+      if options[:whole]
+        pages.concat Converter.whole_page(options)
+      end
+
       result={
         "pages": pages
       }
@@ -87,7 +91,7 @@ module ImagesToScrapbox
 
     end
 
-    attr_reader :image_name, :image_path, :page_title
+    attr_reader :image_name, :image_path, :image_url, :page_title
     def initialize(path)
       @image_name=path
       @image_path=File.expand_path(path)
@@ -96,10 +100,24 @@ module ImagesToScrapbox
     def Converter.toc_page()
       tocpage=SbPage.new()
       tocpage.set_page_title(@@converted_on)
-      @@converters.map do |converter|
-        tocpage.push_text(" ["+converter.page_title+"]")
+      @@converters.map do |c|
+        tocpage.push_text("["+c.page_title+"]")
       end
       tocpage.get_page
+    end
+
+    def Converter.whole_page(options)
+      wholepage=SbPage.new()
+      wholepage.set_page_title("Whole_images_"+@@converted_on)
+      @@converters.map do |c|
+        wholepage.push_text("[[["+c.page_title+"]]]")
+        unless c.image_url.empty?
+          wholepage.push_text( options[:larger] ? "[["+c.image_url+"]]" : "["+c.image_url+"]")
+          wholepage.push_empty_text()
+        end
+        wholepage.push_empty_text()
+      end
+      wholepage.get_page
     end
 
     def start(options)
