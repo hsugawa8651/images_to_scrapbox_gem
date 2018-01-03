@@ -134,6 +134,7 @@ module ImagesToScrapbox
         raise Thor::Error, "Unknown timestamp type: #{timestamp_kind}"
       end
       @page_title=(@image_name + " " + timestamp).gsub!(%r!\s+!, '_')
+      @page_title.sub!(%r!\A/!, '_/')
 
       imagepage=SbPage.new()
       imagepage.set_page_title(@page_title)
